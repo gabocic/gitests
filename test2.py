@@ -3,3 +3,4 @@
 
 if __name__ == '__main__':
     print('empty')
+    print('not empty')
