@@ -11,7 +11,7 @@ resource "aws_db_instance" "default" {
   parameter_group_name = "default.mysql5.7"
 }
 
-resource "aws_db_instance" "default" {
+resource "aws_db_instance" "replica" {
   skip_final_snapshot  = true
   allocated_storage    = 5
   storage_type         = "gp2"
