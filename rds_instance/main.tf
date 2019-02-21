@@ -49,7 +49,7 @@ resource "mysql_user" "ro_user" {
   plaintext_password = "S3Cre7pAss!"
 }
 
-resource "mysql_grant" "jdoe" {
+resource "mysql_grant" "ro_user" {
   user       = "${mysql_user.ro_user.user}"
   host       = "${mysql_user.ro_user.host}"
   database   = "${var.instance_name}"
