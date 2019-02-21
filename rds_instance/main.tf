@@ -38,11 +38,11 @@ resource "aws_db_instance" "replica" {
 }
 
 output "endpoint" {
-  value = "${aws_db_instance.master.address}"
+  value = "${aws_db_instance.master.endpoint}"
 }
 
 provider "mysql" {
-    endpoint = "${aws_db_instance.master.address}"
+    endpoint = "${aws_db_instance.master.endpoint}"
     username = "${var.admin_username}"
     password = "${var.admin_password}"
 }
