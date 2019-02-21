@@ -34,6 +34,7 @@ resource "aws_db_instance" "replica" {
   identifier           = "${var.instance_name}-replica"
   publicly_accessible  = "true"
   skip_final_snapshot  = "true"
+  allocated_storage    = 5
   engine               = "mysql"
   engine_version       = "5.7"
   instance_class       = "db.t2.micro"
