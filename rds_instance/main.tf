@@ -34,7 +34,7 @@ resource "aws_db_instance" "replica" {
   engine               = "mysql"
   engine_version       = "5.7"
   instance_class       = "db.t2.micro"
-  replicate_source_db  = "${var.instance_name}"
+  replicate_source_db  = "${aws_db_instance.master.name}"
 }
 
 provider "mysql" {
