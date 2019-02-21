@@ -38,6 +38,8 @@ resource "aws_db_instance" "replica" {
   engine               = "mysql"
   engine_version       = "5.7"
   instance_class       = "db.t2.micro"
+  username             		= "${var.admin_username}"
+  password             		= "${var.admin_password}"
   replicate_source_db  = "${aws_db_instance.master.name}"
 }
 
