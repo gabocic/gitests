@@ -37,8 +37,12 @@ resource "aws_db_instance" "replica" {
   replicate_source_db  = "${aws_db_instance.master.name}"
 }
 
+output "endpoint" {
+  value = "${aws_db_instance.master.address}"
+}
+
 provider "mysql" {
-    endpoint = "${aws_db_instance.master.endpoint}"
+    endpoint = "${aws_db_instance.master.address}"
     username = "${var.admin_username}"
     password = "${var.admin_password}"
 }
@@ -69,6 +73,3 @@ resource "mysql_grant" "rw_user" {
   privileges = ["SELECT","UPDATE","DELETE","INSERT"]
 }
 
-output "endpoint" {
-  value = "${aws_db_instance.master.endpoint}"
-}
