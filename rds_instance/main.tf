@@ -21,8 +21,8 @@ resource "aws_db_instance" "master" {
   engine               		= "mysql"
   engine_version       		= "5.7"
   instance_class       		= "db.t2.micro"
-  username             		= "foo"
-  password             		= "foobarbaz"
+  username             		= "${var.admin_username}"
+  password             		= "${var.admin_password}"
   vpc_security_group_ids	= ["${aws_security_group.instance_sg.*.id}"]
   tags                 		= {
                             	environment = "${var.instance_name}"
