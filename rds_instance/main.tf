@@ -14,7 +14,8 @@ resource "aws_security_group" "instance_sg" {
 
 resource "aws_db_instance" "master" {
   identifier           		= "${var.instance_name}"
-  skip_final_snapshot  		= true
+  publicly_accessible       = "true"
+  skip_final_snapshot  		= "true"
   allocated_storage    		= 5
   storage_type         		= "gp2"
   engine               		= "mysql"
@@ -30,7 +31,8 @@ resource "aws_db_instance" "master" {
 
 resource "aws_db_instance" "replica" {
   identifier           = "${var.instance_name}-replica"
-  skip_final_snapshot  = true
+  publicly_accessible  = "true"
+  skip_final_snapshot  = "true"
   engine               = "mysql"
   engine_version       = "5.7"
   instance_class       = "db.t2.micro"
