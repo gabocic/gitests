@@ -24,6 +24,7 @@ resource "aws_db_instance" "master" {
   username             		= "${var.admin_username}"
   password             		= "${var.admin_password}"
   vpc_security_group_ids	= ["${aws_security_group.instance_sg.*.id}"]
+  backup_retention_period   = 2
   tags                 		= {
                             	environment = "${var.instance_name}"
                          	}
