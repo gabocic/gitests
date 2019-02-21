@@ -6,7 +6,7 @@ resource "aws_security_group" "instance_sg" {
   ingress {
     from_port   = 3306
     to_port     = 3306
-    protocol    = "-1"
+    protocol    = "mysql"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
