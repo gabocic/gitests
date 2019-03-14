@@ -38,7 +38,7 @@ resource "aws_db_instance" "master" {
   instance_class       		= "db.t2.micro"
   username             		= "${var.admin_username}"
   password             		= "${var.admin_password}"
-  vpc_security_group_ids	= ["${aws_security_group.instance_sg.*.id}","sg-055d2440f70739376"]
+  vpc_security_group_ids	= ["${aws_security_group.instance_sg.*.id}"]
   backup_retention_period   = 2
   parameter_group_name      = "${aws_db_parameter_group.pg.name}"
   db_subnet_group_name      = "pwa"
