@@ -14,8 +14,8 @@ resource "aws_security_group" "instance_sg" {
 
 resource "aws_db_instance" "master" {
   identifier           		= "${var.instance_name}"
-  publicly_accessible       = "true"
-  skip_final_snapshot  		= "true"
+  publicly_accessible       = "false"
+  skip_final_snapshot  		= "false"
   allocated_storage    		= 5
   storage_type         		= "gp2"
   engine               		= "mysql"
@@ -23,11 +23,10 @@ resource "aws_db_instance" "master" {
   instance_class       		= "db.t2.micro"
   username             		= "${var.admin_username}"
   password             		= "${var.admin_password}"
-  vpc_security_group_ids	= ["${aws_security_group.instance_sg.*.id}"]
+  vpc_security_group_ids	= ["${aws_security_group.instance_sg.*.id}","sg-055d2440f70739376"]
   backup_retention_period   = 2
   tags                 		= {
                             	environment = "${var.instance_name}"
-                                dummytag = "foobar"
                          	}
 }
 
