@@ -29,8 +29,8 @@ resource "aws_db_parameter_group" "pg" {
 
 resource "aws_db_instance" "master" {
   identifier           		= "${var.instance_name}"
-  publicly_accessible       = "false"
-  skip_final_snapshot  		= "false"
+  publicly_accessible       = "true"
+  skip_final_snapshot  		= "true"
   allocated_storage    		= 5
   storage_type         		= "gp2"
   engine               		= "mysql"
