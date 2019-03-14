@@ -12,6 +12,21 @@ resource "aws_security_group" "instance_sg" {
 
 }
 
+resource "aws_db_parameter_group" "pg" {
+  name   = "${var.instance_name}-pg"
+  family = "mysql5.7"
+
+  parameter {
+    name  = "max_connections"
+    value = "222"
+  }
+
+  parameter {
+    name  = "autocommit"
+    value = "0"
+  }
+}
+
 resource "aws_db_instance" "master" {
   identifier           		= "${var.instance_name}"
   publicly_accessible       = "false"
@@ -25,6 +40,7 @@ resource "aws_db_instance" "master" {
   password             		= "${var.admin_password}"
   vpc_security_group_ids	= ["${aws_security_group.instance_sg.*.id}","sg-055d2440f70739376"]
   backup_retention_period   = 2
+  parameter_group_name      = "${aws_db_parameter_group.pg.name}"
   tags                 		= {
                             	environment = "${var.instance_name}"
                          	}
@@ -40,6 +56,7 @@ resource "aws_db_instance" "replica" {
   instance_class       = "db.t2.micro"
   username             		= "${var.admin_username}"
   password             		= "${var.admin_password}"
+  parameter_group_name      = "${aws_db_parameter_group.pg.name}"
   replicate_source_db  = "${aws_db_instance.master.name}"
 }
 
