@@ -18,12 +18,12 @@ resource "aws_db_parameter_group" "pg" {
 
   parameter {
     name  = "max_connections"
-    value = "222"
+    value = "998"
   }
 
   parameter {
     name  = "autocommit"
-    value = "0"
+    value = "1"
   }
 }
 
