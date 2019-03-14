@@ -27,6 +27,7 @@ resource "aws_db_instance" "master" {
   backup_retention_period   = 2
   tags                 		= {
                             	environment = "${var.instance_name}"
+                                dummytag = "foobar"
                          	}
 }
 
